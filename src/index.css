@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 .section {
-  @apply min-h-dvh pt-16 px-3 sm:px-8
+  @apply pt-16 px-3 sm:px-8
 }
 
 .h2 {
-  @apply text-5xl my-5
+  @apply text-4xl my-5 font-medium mb-8
 }

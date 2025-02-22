@@ -99,21 +99,21 @@ function App() {
   const features = [
     {
       id: 1,
-      icon: <FaRocket className="text-blue-500 text-5xl" />,
+      icon: <FaRocket className="text-blue-400 text-5xl" />,
       title: "Fast Performance",
       description:
         "Experience blazing fast speed with our optimized solutions.",
     },
     {
       id: 2,
-      icon: <FaShieldAlt className="text-green-500 text-5xl" />,
+      icon: <FaShieldAlt className="text-green-400 text-5xl" />,
       title: "Secure & Reliable",
       description:
         "We prioritize security to keep your data safe and protected.",
     },
     {
       id: 3,
-      icon: <FaBolt className="text-yellow-500 text-5xl" />,
+      icon: <FaBolt className="text-yellow-400 text-5xl" />,
       title: "Easy to Use",
       description: "Our interface is designed for simplicity and ease of use.",
     },
@@ -126,35 +126,47 @@ function App() {
           <div className="text-xl">Landing</div>
 
           <div className="block sm:hidden" onClick={() => setnavOpen(!navOpen)}>
-            <div className="h-[30px] w-[30px] flex flex-col justify-around">
-              <div className="w-full h-[5px] bg-white rounded-full"></div>
-              <div className="w-full h-[5px] bg-white rounded-full"></div>
-              <div className="w-full h-[5px] bg-white rounded-full"></div>
+            <div className="h-[30px] w-[30px] flex flex-col justify-around items-center">
+              <div
+                className={`w-full h-[5px] bg-white rounded-full transition-all duration-400 ${
+                  navOpen ? "translate-y-[10px] rotate-45" : ""
+                }`}
+              ></div>
+              <div
+                className={`h-[5px] bg-white rounded-full transition-all duration-400 ${
+                  navOpen ? "w-0" : "w-full"
+                } `}
+              ></div>
+              <div
+                className={`w-full h-[5px] bg-white rounded-full transition-all duration-400 ${
+                  navOpen ? "-translate-y-[10px] -rotate-45" : ""
+                }`}
+              ></div>
             </div>
           </div>
 
           {/* navbar */}
           <div
-            className={`sm:block absolute top-[3.8rem] left-0 px-3 bg-purple-600 transition-all duration-500 w-full sm:w-auto overflow-hidden sm:static
+            className={`sm:block absolute top-[3.8rem] left-0 px-3 bg-purple-600 transition-all duration-400 w-full sm:w-auto overflow-hidden sm:static
               ${navOpen ? "h-dvh " : "h-0 sm:h-auto"}`}
           >
             <div className=" mt-8 sm:mt-0">
               <ul className="sm:flex gap-8">
-                <li className="py-2 text-xl">
+                <li className="py-2">
                   <button onClick={() => scroll(home)}>Home</button>
                 </li>
 
-                <li className="py-2 text-xl">
+                <li className="py-2">
                   <button onClick={() => scroll(feature)}>Features</button>
                 </li>
 
-                <li className="py-2 text-xl">
+                <li className="py-2">
                   <button onClick={() => scroll(testimonial)}>
                     Testimonials
                   </button>
                 </li>
 
-                <li className="py-2 text-xl">
+                <li className="py-2">
                   <button onClick={() => scroll(contact)}>Contact</button>
                 </li>
               </ul>
@@ -172,14 +184,14 @@ function App() {
             numquam placeat! Consequuntur alias error consequatur laudantium aut
             vel iste libero.
           </p>
-          <button className="bg-purple-600 text-white px-5 py-2 rounded-4xl hover:bg-purple-500">
+          <button className="bg-purple-600 text-white px-5 py-2 rounded-4xl hover:bg-purple-400">
             Get Started
           </button>
         </div>
       </section>
 
       <section ref={feature} className="section">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto">
           <h2 className="h2 text-center"> Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {features.map((feature) => (
@@ -197,7 +209,7 @@ function App() {
       </section>
 
       <section ref={testimonial} className="section">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto">
           <h2 className="h2 text-center">What Our Clients Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-10">
             {testimonials.map((testimonial) => (
@@ -205,7 +217,7 @@ function App() {
                 key={testimonial.id}
                 className="bg-white p-6 rounded-lg shadow-md"
               >
-                <div className="flex items-center space-x-4">
+                <div className="flex flex-col sm:flex-row  items-center space-x-4">
                   <img
                     src={testimonial.image}
                     alt={testimonial.name}
@@ -215,10 +227,12 @@ function App() {
                     <h3 className="text-lg font-semibold">
                       {testimonial.name}
                     </h3>
-                    <p className="text-gray-500">{testimonial.position}</p>
+                    <p className="text-gray-400">{testimonial.position}</p>
                   </div>
                 </div>
-                <p className="mt-4 text-gray-700">{testimonial.feedback}</p>
+                <p className="mt-4 text-gray-700 text-center sm:text-left">
+                  {testimonial.feedback}
+                </p>
               </div>
             ))}
           </div>
@@ -237,11 +251,11 @@ function App() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
                 placeholder="Enter your name"
               />
               {errors.name && (
-                <p className="text-red-500 text-sm">{errors.name}</p>
+                <p className="text-red-400 text-sm">{errors.name}</p>
               )}
             </div>
 
@@ -253,11 +267,11 @@ function App() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
                 placeholder="Enter your email"
               />
               {errors.email && (
-                <p className="text-red-500 text-sm">{errors.email}</p>
+                <p className="text-red-400 text-sm">{errors.email}</p>
               )}
             </div>
 
@@ -269,11 +283,11 @@ function App() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
                 placeholder="Enter your phone number"
               />
               {errors.phone && (
-                <p className="text-red-500 text-sm">{errors.phone}</p>
+                <p className="text-red-400 text-sm">{errors.phone}</p>
               )}
             </div>
 
@@ -284,11 +298,11 @@ function App() {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
                 placeholder="Enter your message"
               />
               {errors.message && (
-                <p className="text-red-500 text-sm">{errors.message}</p>
+                <p className="text-red-400 text-sm">{errors.message}</p>
               )}
             </div>
 
